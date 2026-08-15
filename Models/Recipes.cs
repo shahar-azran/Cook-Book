@@ -2,27 +2,19 @@
 {
     public class Recipes
     {
-        string RecipesId;
+        string RecipesName;
         string DishPhoto;
-        int IngredientsId;
         string PreperationMethod;
         string UserId;
+        int CatId;
 
-        public Recipes(string RecipesId, string DishPhoto, int IngredientsId, string PreperationMethod, string UserId)
+        public Recipes(string DishPhoto, string PreperationMethod, string UserId, string RecipesName, int CatId)
         {
-            this.RecipesId = RecipesId;
+            this.RecipesName = RecipesName;
             this.DishPhoto = DishPhoto;
-            this.IngredientsId = IngredientsId;
             this.PreperationMethod = PreperationMethod;
             this.UserId = UserId;
-        }
-        public string GetRecipesId()
-        {
-            return this.RecipesId;
-        }
-        public void SetRecipesId(string RecipesId)
-        {
-            this.RecipesId = RecipesId;
+            this.CatId = CatId;
         }
         public string GetDishPhoto()
         {
@@ -31,14 +23,6 @@
         public void SetDishPhoto(string DishPhoto)
         {
             this.DishPhoto = DishPhoto;
-        }
-        public int GetIngredientsId()
-        {
-            return this.IngredientsId;
-        }
-        public void SetIngredientsId(int IngredientsId)
-        {
-            this.IngredientsId = IngredientsId;
         }
         public string GetPreperationMethod()
         {
@@ -56,7 +40,31 @@
         {
             this.UserId = UserId;
         }
+        public string GetRecipesName()
+        {
+            return this.RecipesName;
+        }
+        public void SetRecipesName(string RecipesName)
+        {
+            this.RecipesName = RecipesName;
+        }
+        public int GetCatId()
+        {
+            return this.CatId;
+        }
+        public void SetCatId(int CatId)
+        {
+            this.CatId = CatId;
+        }
 
+        public override string ToString()
+        {
+            return $@",DishPhoto: {this.DishPhoto}, 
+                    PreperationMethod: {this.PreperationMethod},
+                    UserId: {this.UserId},
+                    RecipesName: {this.RecipesName},
+                    CatId: {this.CatId}";
+        }
 
     }
 }

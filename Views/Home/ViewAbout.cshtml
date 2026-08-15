@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewData["Title"] = "ViewAbout";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+    bool isLoggedIn = Convert.ToBoolean(ViewBag.Login);
+}
+
+<style>
+    .about-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: #fffdf9;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        text-align: center;
+    }
+
+    .about-title {
+        font-size: 2.5rem;
+        color: #e67e22;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .about-subtitle {
+        font-size: 1.2rem;
+        color: #7f8c8d;
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+
+    .about-divider {
+        width: 80px;
+        height: 4px;
+        background-color: #f39c12;
+        margin: 0 auto 30px auto;
+        border-radius: 2px;
+    }
+
+    .about-text {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .about-features {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 40px;
+        gap: 20px;
+    }
+
+    .feature-box {
+        flex: 1;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+    }
+
+        .feature-box h4 {
+            margin-top: 0;
+            color: #d35400;
+        }
+</style>
+
+
+<div class="about-container">
+    <h1 class="about-title">About CookBook</h1>
+    <p class="about-subtitle">Fill Your Duda - Your Digital Culinary Sanctuary</p>
+    <div class="about-divider"></div>
+
+    <p class="about-text">
+        Welcome to <strong>CookBook</strong>, the ultimate online home for food lovers, home chefs, and anyone who simply loves a good meal! We created CookBook with a very clear mission: to eliminate the mess of lost recipes written on sticky notes and bring all your culinary secrets into one beautifully organized digital haven.
+    </p>
+
+    <p class="about-text">
+        Whether you are mastering an ancient family recipe passed down through generations, experimenting with bold new flavor combinations, or just saving quick 15-minute weeknight dinners, CookBook gives you full control. Easily organize your dishes by categories, upload mouth-watering photos, and access your personal collection from any device, anytime.
+    </p>
+
+    <div class="about-features">
+        <div class="feature-box">
+            <h4>Organize Easily</h4>
+            <p>Categorize your recipes seamlessly and find what you need in seconds.</p>
+        </div>
+        <div class="feature-box">
+            <h4>Save Secrets</h4>
+            <p>Keep your special ingredients and step-by-step methods stored safely.</p>
+        </div>
+        <div class="feature-box">
+            <h4>Your Own Space</h4>
+            <p>Manage your custom collection under your personal profile with ease.</p>
+        </div>
+    </div>
+</div>

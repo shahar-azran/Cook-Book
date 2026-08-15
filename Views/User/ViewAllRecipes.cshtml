@@ -1,0 +1,319 @@
+﻿@using Cook_Book.Models
+@model CookBookViewModel
+@{
+    ViewData["Title"] = "ViewAllRecipes";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+
+    int pageSize = 6;
+    int currentPage = 1;
+
+    if (Context.Request.Query.ContainsKey("page"))
+    {
+        int.TryParse(Context.Request.Query["page"], out currentPage);
+    }
+
+    int selectedCatId = 0;
+    if (Context.Request.Query.ContainsKey("catId"))
+    {
+        int.TryParse(Context.Request.Query["catId"], out selectedCatId);
+    }
+
+    List<Recipes> filteredRecipes = new List<Recipes>();
+
+    if (Model != null)
+    {
+        for (int i = 0; i < Model.GetRecipeCount(); i++)
+        {
+            var r = Model.GetRecipes(i);
+
+            if (selectedCatId == 0 || r.GetCatId() == selectedCatId)
+            {
+                filteredRecipes.Add(r);
+            }
+        }
+    }
+
+    int totalRecipes = filteredRecipes.Count;
+
+    int startIndex = (currentPage - 1) * pageSize;
+    int endIndex = startIndex + pageSize;
+
+    if (endIndex > totalRecipes)
+    {
+        endIndex = totalRecipes;
+    }
+
+    int totalPages = totalRecipes / pageSize;
+    if (totalRecipes % pageSize > 0)
+    {
+        totalPages = totalPages + 1;
+    }
+}
+
+<main class="all-recipes-page">
+    <div class="main-card">
+
+        <div class="page-header">
+            <h1 class="page-title">All Recipes</h1>
+
+            <div class="filter-area">
+                <label for="categoryFilter">Filter by Category:</label>
+                <select id="categoryFilter" class="category-select" onchange="filterByCategory(this.value)">
+                    <option value="0">All Categories</option>
+                    @if (Model != null)
+                    {
+                        if (Model.GetRecipeCatagoriesCount() > 0)
+                        {
+                            for (int i = 0; i < Model.GetRecipeCatagoriesCount(); i++)
+                            {
+                                var category = Model.GetRecipeCatagory(i);
+                                if (category.GetCatId() == selectedCatId)
+                                {
+                                    <option value="@category.GetCatId()" selected="selected">@category.GetCatagoryName()</option>
+                                }
+                                else
+                                {
+                                    <option value="@category.GetCatId()">@category.GetCatagoryName()</option>
+                                }
+                            }
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="recipes-grid">
+            @if (totalRecipes > 0)
+            {
+                if (startIndex < totalRecipes)
+                {
+                    for (int j = startIndex; j < endIndex; j++)
+                    {
+                        var recipe = filteredRecipes[j];
+                        <div class="recipe-card">
+                            <div class="recipe-image">
+                                <img src="~/Images/@recipe.GetDishPhoto()" alt="@recipe.GetRecipesName()" />
+                            </div>
+
+                            <div class="recipe-info">
+                                <h3>@recipe.GetRecipesName()</h3>
+                                <p>@recipe.GetPreperationMethod()</p>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+            else
+            {
+                <p class="no-recipes">No recipes found in this category.</p>
+            }
+        </div>
+
+        @if (totalPages > 1)
+        {
+            <div class="pagination-container">
+                @if (currentPage > 1)
+                {
+                    <a href="?page=@(currentPage - 1)&catId=@selectedCatId" class="page-btn prev-btn">&laquo; Prev</a>
+                }
+
+                @for (int p = 1; p <= totalPages; p++)
+                {
+                    if (p == currentPage)
+                    {
+                        <span class="page-btn active">@p</span>
+                    }
+                    else
+                    {
+                        <a href="?page=@p&catId=@selectedCatId" class="page-btn">@p</a>
+                    }
+                }
+
+                @if (currentPage < totalPages)
+                {
+                    <a href="?page=@(currentPage + 1)&catId=@selectedCatId" class="page-btn next-btn">Next &raquo;</a>
+                }
+            </div>
+        }
+    </div>
+</main>
+
+<script>
+    function filterByCategory(catId) {
+        window.location.href = "?page=1&catId=" + catId;
+    }
+</script>
+
+<style>
+    .all-recipes-page {
+        width: 100%;
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+        .all-recipes-page .main-card {
+            background-color: #fdf6ec;
+            border-radius: 60px;
+            padding: 40px;
+        }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .all-recipes-page .page-title {
+        font-size: 36px;
+        color: #333;
+        margin: 0;
+        font-family: 'Comfortaa', cursive;
+    }
+
+    .filter-area {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Comfortaa', cursive;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .category-select {
+        background-color: #ffffff;
+        color: #333;
+        border: 1px solid #ccc;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-family: 'Comfortaa', cursive;
+        font-weight: bold;
+        outline: none;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+        transition: all 0.2s;
+    }
+
+        .category-select:focus {
+            border-color: #e67e22;
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.15);
+        }
+
+    .all-recipes-page .recipes-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 320px));
+        justify-content: center;
+        gap: 25px;
+        width: 100%;
+    }
+
+    .all-recipes-page .recipe-card {
+        background-color: #ffffff;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+        transition: transform 0.2s;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+        .all-recipes-page .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .all-recipes-page .recipe-image img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .all-recipes-page .recipe-info {
+        padding: 18px;
+        font-family: 'Comfortaa', cursive;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+        .all-recipes-page .recipe-info h3 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin: 0 0 8px 0;
+        }
+
+        .all-recipes-page .recipe-info p {
+            font-size: 13px;
+            color: #7f8c8d;
+            line-height: 1.5;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+    .all-recipes-page .no-recipes {
+        text-align: center;
+        font-size: 18px;
+        color: #7f8c8d;
+        padding: 50px;
+        width: 100%;
+    }
+
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 40px;
+        font-family: 'Comfortaa', cursive;
+    }
+
+    .page-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        height: 36px;
+        padding: 0 12px;
+        border-radius: 18px;
+        background-color: #ffffff;
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 13px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+    }
+
+        .page-btn:hover {
+            background-color: #ff8c00;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .page-btn.active {
+            background-color: #ff8c00;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+            cursor: default;
+            pointer-events: none;
+        }
+
+    .prev-btn, .next-btn {
+        background-color: #333;
+        color: #fff;
+    }
+
+        .prev-btn:hover, .next-btn:hover {
+            background-color: #555;
+        }
+</style>
+
+```

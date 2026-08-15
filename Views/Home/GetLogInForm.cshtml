@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "GetLogInForm";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+<link href="~/css/loginstylesheet.css" rel="stylesheet" />
+<div class="login-container">
+    <div class="brand-header">
+        <h2>Log In</h2>
+        <p>Welcome back! Ready to cook something new?</p>
+    </div>
+        @if (ViewBag.LoginError != null)
+        {
+            <div class="error-message">
+                <h1>
+                    Your LogIn is failed, Try Again
+                </h1>
+            </div>
+        }
+
+    <form action="/Home/LogIn" method="post" class="login-form">
+        <div class="input-group">
+            <input type="text" id="username" name="username" required placeholder=" ">
+            <label for="username">User Name</label>
+            <div class="input-bar"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="password" name="password" id="password" required placeholder=" ">
+            <label for="password">Password</label>
+            <div class="input-bar"></div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-send">Send</button>
+            <button type="reset" class="btn btn-clear">Clear</button>
+        </div>
+    </form>
+
+    <div class="form-footer">
+        <span>Don't have an account?</span>
+        <a href="https://localhost:7222/Home/GetSignUpForm" class="signup-link">Sign Up</a>
+    </div>
+</div>

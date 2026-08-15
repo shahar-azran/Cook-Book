@@ -1,0 +1,132 @@
+﻿@using Cook_Book.Models
+@model Recipes
+@{
+    ViewData["Title"] = "ViewRecipeDetails";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+<main action="/Home/ViewRecipeDetails" method="get" class="recipe-details-page">
+    <div class="details-card">
+        <div class="recipe-header">
+            <h1 class="recipe-title">@Model.GetRecipesName()</h1>
+        </div>
+
+        <div class="recipe-content">
+            <div class="image-section">
+                <img src="~/Images/@Model.GetDishPhoto()" alt="@Model.GetRecipesName()" />
+            </div>
+
+            <div class="info-section">
+                <div class="info-group">
+                    <h2>Preparation Method</h2>
+                    <p class="prep-text">@Model.GetPreperationMethod()</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <a href="https://localhost:7222/User/ViewAllRecipes" class="back-btn">&laquo; Back to Recipes</a>
+        </div>
+    </div>
+</main>
+
+<style>
+    .recipe-details-page {
+        width: 100%;
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+        .recipe-details-page .details-card {
+            background-color: #fdf6ec;
+            border-radius: 60px;
+            padding: 50px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.02);
+        }
+
+        .recipe-details-page .recipe-header {
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .recipe-details-page .recipe-title {
+            font-size: 42px;
+            color: #333;
+            margin: 0;
+            font-family: 'Comfortaa', cursive;
+        }
+
+        .recipe-details-page .recipe-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+    .recipe-details-page .image-section img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 35px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        display: block;
+    }
+
+    .recipe-details-page .info-section {
+        background-color: #ffffff;
+        border-radius: 35px;
+        padding: 35px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+        min-height: 330px;
+        box-sizing: border-box;
+    }
+
+    .recipe-details-page .info-group h2 {
+        font-size: 24px;
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-family: 'Comfortaa', cursive;
+        border-bottom: 2px solid #ff8c00;
+        padding-bottom: 8px;
+        display: inline-block;
+    }
+
+    .recipe-details-page .prep-text {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.8;
+        margin: 0;
+        font-family: 'Comfortaa', cursive;
+        white-space: pre-line;
+    }
+
+    .recipe-details-page .footer-section {
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .recipe-details-page .back-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 25px;
+        border-radius: 25px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 15px;
+        font-family: 'Comfortaa', cursive;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .recipe-details-page .back-btn:hover {
+            background-color: #ff8c00;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 140, 0, 0.3);
+        }
+</style>

@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "AddOwnRecipe";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+<main class="recipe-success-page">
+    <div class="success-card">
+        <h1 class="success-title">Recipe Saved Successfully!</h1>
+        <p class="success-subtitle">Your recipe has been added to your cookbook.</p>
+
+        <div class="actions">
+            <a href="https://localhost:7222/User/GetOwnRecipeForm" class="btn btn-add-more">Add Another Recipe</a>
+            <a href="https://localhost:7222/User/ViewAllRecipes" class="btn btn-view-all">View All Recipes</a>
+        </div>
+    </div>
+</main>
+
+<style>
+    .recipe-success-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 100px);
+        padding: 40px 20px;
+        box-sizing: border-box;
+    }
+
+        .recipe-success-page .success-card {
+            background-color: #fdf6ec;
+            border-radius: 60px;
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.02);
+            box-sizing: border-box;
+        }
+
+        .recipe-success-page .success-title {
+            font-size: 32px;
+            color: #ff8c00;
+            margin-bottom: 12px;
+            font-family: 'Comfortaa', cursive;
+            font-weight: bold;
+        }
+
+        .recipe-success-page .success-subtitle {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 35px;
+            font-family: 'Comfortaa', cursive;
+        }
+
+        .recipe-success-page .actions {
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+        }
+
+        .recipe-success-page .btn {
+            display: block;
+            padding: 14px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Comfortaa', cursive;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .recipe-success-page .btn-add-more {
+            background-color: #ff8c00;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+        }
+
+            .recipe-success-page .btn-add-more:hover {
+                background-color: #e07b00;
+                transform: translateY(-2px);
+            }
+
+        .recipe-success-page .btn-view-all {
+            background-color: #eaeaea;
+            color: #555;
+        }
+
+            .recipe-success-page .btn-view-all:hover {
+                background-color: #dddddd;
+                transform: translateY(-2px);
+            }
+</style>
+

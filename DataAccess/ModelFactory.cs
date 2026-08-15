@@ -5,8 +5,15 @@ namespace Cook_Book.DataAccess
 {
     public class ModelFactory
     {
-        public User GetUser(DataRow dataRow)
+        public UserData GetUserData(DataRow dataRow)
         {
+            string UserId = dataRow["UserId"].ToString();
+            string UserName = dataRow["UserName"].ToString();
+          
+            return new UserData(UserId, UserName);
+        }
+        public User GetUser(DataRow dataRow)
+        {   
             string UserId = dataRow["UserId"].ToString();
             string UserName = dataRow["UserName"].ToString();
             string UserTel = dataRow["UserTel"].ToString();
@@ -16,19 +23,19 @@ namespace Cook_Book.DataAccess
         }
         public Recipes GetRecipes(DataRow dataRow)
         {
-            string RecipesId = dataRow["RecipesId"].ToString();
             string DishPhoto = dataRow["DishPhoto"].ToString();
-            int IngredientsId = int.Parse(dataRow["IngredientsId"].ToString());
             string PreperationMethod = dataRow["PreperationMethod"].ToString();
             string UserId = dataRow["UserId"].ToString();
-            return new Recipes(RecipesId, DishPhoto, IngredientsId, PreperationMethod, UserId);
+            string RecipesName = dataRow["RecipesName"].ToString();
+            int CatId = int.Parse(dataRow["CatId"].ToString());
+            return new Recipes(DishPhoto, PreperationMethod, UserId, RecipesName, CatId);
         }
-        public Ingredients GetIngredients(DataRow dataRow)
-        {
-            int ingredientsId = int.Parse(dataRow["IngredientsId"].ToString());
-            string ingredientsName = dataRow["ingredientsName"].ToString();
-            string ingredientsPhoto = dataRow["ingredientsPhoto"].ToString();
-            return new Ingredients(ingredientsId, ingredientsName, ingredientsPhoto);
-        }
+
+        public RecipeCatagories GetRecipeCatagories(DataRow dataRow)
+            {
+                int recipeCatagoryId = int.Parse(dataRow["CatId"].ToString());
+                string recipeCatagoryName = dataRow["CatagoryName"].ToString();
+                return new RecipeCatagories(recipeCatagoryId, recipeCatagoryName);
+            }
     }
 }

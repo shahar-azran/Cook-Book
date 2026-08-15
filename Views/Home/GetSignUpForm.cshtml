@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewData["Title"] = "GetSignUpForm";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+<link href="~/css/signupstylesheet.css" rel="stylesheet" />
+<div class="signup-container">
+    <div class="brand-header">
+        <h2>Sign Up</h2>
+        <p>Create your account and start cooking!</p>
+    </div>
+    @if (ViewBag.SignUpError != null)
+    {
+        <div class="error-message">
+            <h1>
+                Your SignUp has failed, Try Again
+            </h1>
+        </div>
+    }
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="error-message">
+            <h1>
+                All fields are required.
+            </h1>
+        </div>
+	}
+    <form action="~/Home/SignUp" method="post" class="signup-form">
+        <div class="input-group">
+            <input type="text" id="userid" name="userId" required placeholder=" ">
+            <label for="userid">User ID</label>
+            <div class="input-bar"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="userName" name="userName" required placeholder=" ">
+            <label for="userName">User Name</label>
+            <div class="input-bar"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="tel" id="userTel" name="userTel" required placeholder=" ">
+            <label for="userTel">Phone Number</label>
+            <div class="input-bar"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="email" id="userEmail" name="userEmail" required placeholder=" ">
+            <label for="userEmail">Email Address</label>
+            <div class="input-bar"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="userPassword" name="userPassword" required placeholder=" ">
+            <label for="userPassword">Password</label>
+            <div class="input-bar"></div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-send">Register</button>
+            <button type="reset" class="btn btn-clear">Clear</button>
+        </div>
+    </form>
+
+    <div class="form-footer">
+        <span>Already have an account?</span>
+        <a href="https://localhost:7222/Home/GetLogInForm" class="login-link">Log In</a>
+    </div>
+</div>
+

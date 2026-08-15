@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewData["Title"] = "GetOwnRecipeForm";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+<main class="add-recipe-page">
+    <div class="form-card">
+        <h1 class="form-title">Add Your Recipe</h1>
+        <p class="form-subtitle">Fill in the details to save your secret recipe!</p>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="error-message">@TempData["ErrorMessage"]</div>
+        }
+
+        <form action="/User/AddOwnRecipe" method="POST" class="recipe-form">
+            
+            <div class="input-group">
+                <input type="text" id="RecipesName" name="RecipesName" required placeholder=" " />
+                <label for="RecipesName">Recipe Name</label>
+            </div>
+
+            <div class="input-group">
+                <select id="CatId" name="CatId" required>
+                    <option value="" disabled selected hidden></option>
+                    <option value="1">Dairy dessert</option>
+                    <option value="2">Meat</option>
+                    <option value="3">Dairy</option>
+                    <option value="4">Pareve</option>
+                    <option value="5">Pasta</option>
+                    <option value="6">Pareve Desserts</option>
+                    <option value="7">Cakes</option>
+                    <option value="8">Lunches</option>
+                    <option value="9">Dinners</option>
+                    <option value="10">Vegan</option>
+                </select>
+                <label for="CatId">Category</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="DishPhoto" name="DishPhoto" required placeholder=" " />
+                <label for="DishPhoto">Photo File Name (e.g., cake.jpg)</label>
+            </div>
+
+            <div class="input-group textarea-group">
+                <textarea id="PreperationMethod" name="PreperationMethod" rows="5" required placeholder=" "></textarea>
+                <label for="PreperationMethod">Preparation Method</label>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-submit">Save Recipe</button>
+                <button type="reset" class="btn btn-clear">Clear</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<style>
+    .add-recipe-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 100px);
+        padding: 40px 20px;
+        box-sizing: border-box;
+    }
+
+    .add-recipe-page .form-card {
+        background-color: #fdf6ec;
+        border-radius: 60px;
+        padding: 50px 40px;
+        width: 100%;
+        max-width: 550px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.02);
+        box-sizing: border-box;
+    }
+
+    .add-recipe-page .form-title {
+        font-size: 36px;
+        color: #ff8c00;
+        margin: 0 0 8px 0;
+        text-align: center;
+        font-family: 'Comfortaa', cursive;
+        font-weight: bold;
+    }
+
+    .add-recipe-page .form-subtitle {
+        font-size: 14px;
+        color: #7f8c8d;
+        margin: 0 0 35px 0;
+        text-align: center;
+        font-family: 'Comfortaa', cursive;
+    }
+
+    .add-recipe-page .error-message {
+        color: #e74c3c;
+        font-family: 'Comfortaa', cursive;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .add-recipe-page .recipe-form {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .add-recipe-page .input-group {
+        position: relative;
+        width: 100%;
+    }
+
+    .add-recipe-page .input-group input,
+    .add-recipe-page .input-group select,
+    .add-recipe-page .input-group textarea {
+        width: 100%;
+        padding: 10px 0 10px 5px;
+        font-size: 16px;
+        color: #333;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        background: transparent;
+        outline: none;
+        font-family: 'Comfortaa', cursive;
+        transition: border-color 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .add-recipe-page .input-group select {
+        cursor: pointer;
+        padding-left: 1px;
+    }
+
+    .add-recipe-page .input-group label {
+        position: absolute;
+        top: 10px;
+        left: 5px;
+        font-size: 16px;
+        color: #999;
+        font-family: 'Comfortaa', cursive;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    .add-recipe-page .input-group input:focus ~ label,
+    .add-recipe-page .input-group input:not(:placeholder-shown) ~ label,
+    .add-recipe-page .input-group textarea:focus ~ label,
+    .add-recipe-page .input-group textarea:not(:placeholder-shown) ~ label,
+    .add-recipe-page .input-group select:focus ~ label,
+    .add-recipe-page .input-group select:valid ~ label {
+        top: -15px;
+        font-size: 12px;
+        color: #ff8c00;
+        font-weight: bold;
+    }
+
+    .add-recipe-page .input-group input:focus,
+    .add-recipe-page .input-group select:focus,
+    .add-recipe-page .input-group textarea:focus {
+        border-bottom: 2px solid #ff8c00;
+    }
+
+    .add-recipe-page .textarea-group label {
+        top: 10px;
+    }
+
+    .add-recipe-page .form-actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .add-recipe-page .btn {
+        flex: 1;
+        padding: 14px;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: 'Comfortaa', cursive;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .add-recipe-page .btn-submit {
+        background-color: #ff8c00;
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+    }
+
+    .add-recipe-page .btn-submit:hover {
+        background-color: #e07b00;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 140, 0, 0.3);
+    }
+
+    .add-recipe-page .btn-clear {
+        background-color: #eaeaea;
+        color: #555;
+    }
+
+    .add-recipe-page .btn-clear:hover {
+        background-color: #dddddd;
+        transform: translateY(-2px);
+    }
+</style>

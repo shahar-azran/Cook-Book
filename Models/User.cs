@@ -1,60 +1,74 @@
 ﻿namespace Cook_Book.Models
 {
-    public class User
-    {
-        string UserId;
-        string UserName;
-        string UserTel;
-        string UserEmail;
-        string UserPassword;
 
-        public User(string UserId, string UserName, string UserTel, string UserEmail, string UserPassword)
+    public class UserData
+    {
+        string userId;
+        string userName;
+
+        public UserData(string userId, string userName)
         {
-            this.UserId = UserId;
-            this.UserName = UserName;
-            this.UserTel = UserTel;
-            this.UserEmail = UserEmail;
-            this.UserPassword = UserPassword;
+            this.userId = userId;
+            this.userName = userName;
         }
         public string GetUserId()
         {
-            return this.UserId;
+            return this.userId;
         }
         public void SetUserId(string UserId)
         {
-            this.UserId = UserId;
+            this.userId = UserId;
         }
         public string GetUserName()
         {
-            return this.UserName;
+            return this.userName;
         }
         public void SetUserName(string UserName)
         {
-            this.UserName = UserName;
+            this.userName = UserName;
         }
+
+    }
+    public class User: UserData
+    {
+       
+        string userTel;
+        string userEmail;
+        string userPassword;
+
+        public User(string userId, string userName, string userTel, string userEmail, string userPassword) 
+            : base(userId, userName)
+        {
+          
+            this.userTel = userTel;
+            this.userEmail = userEmail;
+            this.userPassword = userPassword;
+        }
+
+     
         public string GetUserTel()
         {
-            return this.UserTel;
+            return this.userTel;
         }
-        public void SetUserTel(string UserTel)
+        public void SetUserTel(string userTel)
         {
-            this.UserTel = UserTel;
+            this.userTel = userTel;
         }
         public string GetUserEmail()
         {
-            return this.UserEmail;
+            return this.userEmail;
         }
-        public void SetUserEmail(string UserEmail)
+        public void SetUserEmail(string userEmail)
         {
-            this.UserEmail = UserEmail;
+            this.userEmail = userEmail;
         }
         public string GetUserPassword()
         {
-            return this.UserPassword;
+            return this.userPassword;
         }
-        public void SetUserPassword(string UserPassword)
+        public void SetUserPassword(string userPassword)
         {
-            this.UserPassword = UserPassword;
+            this.userPassword = userPassword;
         }
 
 

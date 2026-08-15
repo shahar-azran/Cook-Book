@@ -9,6 +9,16 @@ namespace Cook_Book
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            // 1. הגדרת שירותי ה-Session (חובה בשביל לשמור נתוני לוג-אין)
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // ה-Session יימחק אחרי 30 דקות ללא פעילות
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            builder.Services.AddHttpContextAccessor();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -24,11 +34,13 @@ namespace Cook_Book
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=ViewHomePage}/{id?}");
 
             app.Run();
         }

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "ViewHomePage";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+<link href="~/css/homestylesheet.css" rel="stylesheet" />
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Fill Your DUDA</h1>
+
+            <p>
+                Explore hundreds of delicious recipes,
+                and meal ideas for every occasion.
+            </p>
+
+            <nav class="Enter">
+                <ul>
+                    <li><a href="https://localhost:7222/Home/GetLogInForm" class="LogIn">Log In</a></li>
+                    <li><a href="https://localhost:7222/Home/GetSignUpForm" class="SignUp">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="hero-image">
+            <img src="~/Images/Home Photo.jpg" />
+        </div>
+    </section>
+
+</main>
