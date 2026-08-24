@@ -31,7 +31,7 @@
 
 .input-group {
     position: relative;
-    margin-bottom: 32px;
+    margin-bottom: 35px;
 }
 
     .input-group input {
@@ -82,6 +82,54 @@
     .input-group input:focus {
         outline: none;
     }
+
+.tooltip-error {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 6px;
+    background-color: #ffffff;
+    color: #333333;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e0e0e0;
+    z-index: 100;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    direction: rtl;
+}
+
+.input-group.show-error .tooltip-error {
+    display: flex;
+}
+
+.tooltip-error::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 15px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #ffffff transparent;
+}
+
+.tooltip-icon {
+    background-color: #ff8c00;
+    color: #ffffff;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+}
 
 .form-actions {
     display: flex;

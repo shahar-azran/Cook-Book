@@ -27,13 +27,6 @@ namespace Cook_Book.Controllers
             return View(cookBookViewModel);
         }
 
-        public IActionResult ViewRecipeDetails(string recipeId)
-        {
-            var viewModelFactory = new ViewModelFactory(new DB_Helper());
-            Recipes recipe = viewModelFactory.GetRecipeById(recipeId);
-            ViewBag.Login = HttpContext.Session.GetString("UserId") != null;
-            return View(recipe);
-        }
 
         public IActionResult GetOwnRecipeForm()
         {
@@ -117,6 +110,18 @@ namespace Cook_Book.Controllers
             }
 
             return RedirectToAction("GetLogInForm", "Home");
+        }
+        public IActionResult ViewRecipeDetails(string name)
+        {
+            var viewModelFactory = new ViewModelFactory(new DB_Helper());
+            Recipes recipe = viewModelFactory.GetRecipeByName(name);
+
+            if (recipe == null)
+            {
+                return RedirectToAction("ViewAllRecipes");
+            }
+
+            return View(recipe);
         }
     }
 }

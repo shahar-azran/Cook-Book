@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/MasterPage.cshtml";
 }
 
-<link href="~/css/signupstylesheet.css" rel="stylesheet" />
+<link href="~/css/SignUpStyleSheet.css" rel="stylesheet" />
+<script src="~/js/SignUp.js"></script>
 <div class="signup-container">
     <div class="brand-header">
         <h2>Sign Up</h2>
@@ -26,35 +27,55 @@
             </h1>
         </div>
 	}
-    <form action="~/Home/SignUp" method="post" class="signup-form">
+    <form action="~/Home/SignUp" method="post" class="signup-form" onsubmit="return validateSignUp(event)">
         <div class="input-group">
-            <input type="text" id="userid" name="userId" required placeholder=" ">
+            <input type="text" id="userid" name="userId" placeholder=" ">
             <label for="userid">User ID</label>
             <div class="input-bar"></div>
+            <div id="userIdError" class="tooltip-error">
+                <span class="tooltip-text"></span>
+                <div class="tooltip-icon">!</div>
+            </div>
         </div>
 
         <div class="input-group">
-            <input type="text" id="userName" name="userName" required placeholder=" ">
+            <input type="text" id="userName" name="userName" placeholder=" ">
             <label for="userName">User Name</label>
             <div class="input-bar"></div>
+            <div id="userNameError" class="tooltip-error">
+                <span class="tooltip-text"></span>
+                <div class="tooltip-icon">!</div>
+            </div>
         </div>
 
         <div class="input-group">
-            <input type="tel" id="userTel" name="userTel" required placeholder=" ">
+            <input type="tel" id="userTel" name="userTel" placeholder=" ">
             <label for="userTel">Phone Number</label>
             <div class="input-bar"></div>
+            <div id="userTelError" class="tooltip-error">
+                <span class="tooltip-text"></span>
+                <div class="tooltip-icon">!</div>
+            </div>
         </div>
 
         <div class="input-group">
-            <input type="email" id="userEmail" name="userEmail" required placeholder=" ">
+            <input type="email" id="userEmail" name="userEmail" placeholder=" ">
             <label for="userEmail">Email Address</label>
             <div class="input-bar"></div>
+            <div id="userEmailError" class="tooltip-error">
+                <span class="tooltip-text"></span>
+                <div class="tooltip-icon">!</div>
+            </div>
         </div>
 
         <div class="input-group">
-            <input type="password" id="userPassword" name="userPassword" required placeholder=" ">
+            <input type="password" id="userPassword" name="userPassword" placeholder=" ">
             <label for="userPassword">Password</label>
             <div class="input-bar"></div>
+            <div id="userPasswordError" class="tooltip-error">
+                <span class="tooltip-text"></span>
+                <div class="tooltip-icon">!</div>
+            </div>
         </div>
 
         <div class="form-actions">

@@ -9,10 +9,14 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
+
 .brand-header {
     text-align: center;
     margin-bottom: 40px;
 }
+
+
 
     .brand-header h2 {
         color: #ff8c00;
@@ -22,6 +26,8 @@
         letter-spacing: -0.5px;
     }
 
+
+
     .brand-header p {
         color: #6a6a6a;
         font-size: 14px;
@@ -29,10 +35,14 @@
         font-weight: 400;
     }
 
+
+
 .input-group {
     position: relative;
     margin-bottom: 35px;
 }
+
+
 
     .input-group input {
         width: 100%;
@@ -46,6 +56,8 @@
         transition: all 0.3s ease;
     }
 
+
+
     .input-group label {
         position: absolute;
         top: 12px;
@@ -57,6 +69,8 @@
         font-weight: 500;
     }
 
+
+
     .input-group input:focus ~ label,
     .input-group input:not(:placeholder-shown) ~ label {
         top: -16px;
@@ -64,6 +78,8 @@
         color: #ff8c00;
         font-weight: 600;
     }
+
+
 
     .input-group .input-bar {
         position: absolute;
@@ -75,19 +91,27 @@
         transition: width 0.3s ease;
     }
 
+
+
     .input-group input:focus ~ .input-bar {
         width: 100%;
     }
 
+
+
     .input-group input:focus {
         outline: none;
     }
+
+
 
 .form-actions {
     display: flex;
     gap: 14px;
     margin-top: 20px;
 }
+
+
 
 .btn {
     flex: 1;
@@ -100,11 +124,15 @@
     transition: all 0.2s ease;
 }
 
+
+
 .btn-send {
     background: #ff8c00;
     color: white;
     box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
 }
+
+
 
     .btn-send:hover {
         background: #e07b00;
@@ -112,19 +140,27 @@
         box-shadow: 0 6px 15px rgba(255, 140, 0, 0.3);
     }
 
+
+
     .btn-send:active {
         transform: translateY(1px);
     }
+
+
 
 .btn-clear {
     background-color: #f2f2f2;
     color: #555;
 }
 
+
+
     .btn-clear:hover {
         background-color: #e6e6e6;
         color: #222;
     }
+
+
 
 .form-footer {
     text-align: center;
@@ -132,6 +168,8 @@
     font-size: 13px;
     color: #777;
 }
+
+
 
 .signup-link {
     color: #ff8c00;
@@ -141,10 +179,14 @@
     transition: color 0.2s ease;
 }
 
+
+
     .signup-link:hover {
         color: #e07b00;
         text-decoration: underline;
     }
+
+
 
 .error-message {
     display: block;
@@ -157,6 +199,8 @@
     width: 100%;
     text-align: center;
 }
+
+
 
     .error-message h1 {
         color: #e53e3e !important;

@@ -90,16 +90,18 @@
                     for (int j = startIndex; j < endIndex; j++)
                     {
                         var recipe = filteredRecipes[j];
-                        <div class="recipe-card">
-                            <div class="recipe-image">
-                                <img src="~/Images/@recipe.GetDishPhoto()" alt="@recipe.GetRecipesName()" />
-                            </div>
+                        <a href="/User/ViewRecipeDetails?name=@Uri.EscapeDataString(recipe.GetRecipesName())" class="recipe-card-link">
+                            <div class="recipe-card">
+                                <div class="recipe-image">
+                                    <img src="~/Images/@recipe.GetDishPhoto()" alt="@recipe.GetRecipesName()" />
+                                </div>
 
-                            <div class="recipe-info">
-                                <h3>@recipe.GetRecipesName()</h3>
-                                <p>@recipe.GetPreperationMethod()</p>
+                                <div class="recipe-info">
+                                    <h3>@recipe.GetRecipesName()</h3>
+                                    <p>@recipe.GetPreperationMethod()</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     }
                 }
             }
@@ -145,6 +147,13 @@
 </script>
 
 <style>
+    .recipe-card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        width: 100%;
+    }
+
     .all-recipes-page {
         width: 100%;
         max-width: 1200px;
@@ -220,6 +229,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+        height: 100%;
     }
 
         .all-recipes-page .recipe-card:hover {
@@ -315,5 +325,4 @@
             background-color: #555;
         }
 </style>
-
 ```

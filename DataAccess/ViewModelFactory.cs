@@ -129,5 +129,17 @@ namespace Cook_Book.DataAccess
 
             return rowsAffected > 0;
         }
+        public Recipes GetRecipeByName(string name)
+        {
+            string sql = $@"SELECT * FROM Recipes WHERE RecipesName = '{name}'";
+            DataTable dt = this.dbHelper.GetDataTable(sql, "Recipes");
+
+            if (dt.Rows.Count > 0)
+            {
+                return this.modelFactory.GetRecipes(dt.Rows[0]);
+            }
+
+            return null;
+        }
     }
 }

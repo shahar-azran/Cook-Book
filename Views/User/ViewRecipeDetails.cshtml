@@ -1,132 +1,132 @@
 ﻿@using Cook_Book.Models
 @model Recipes
 @{
-    ViewData["Title"] = "ViewRecipeDetails";
+    ViewData["Title"] = Model.GetRecipesName();
     Layout = "~/Views/Shared/MasterPage.cshtml";
 }
 
-<main action="/Home/ViewRecipeDetails" method="get" class="recipe-details-page">
+<div class="recipe-details-container">
     <div class="details-card">
-        <div class="recipe-header">
-            <h1 class="recipe-title">@Model.GetRecipesName()</h1>
-        </div>
+        <h1 class="recipe-title">@Model.GetRecipesName()</h1>
 
-        <div class="recipe-content">
-            <div class="image-section">
+        <div class="recipe-content-body">
+            <div class="image-wrapper">
                 <img src="~/Images/@Model.GetDishPhoto()" alt="@Model.GetRecipesName()" />
             </div>
 
-            <div class="info-section">
-                <div class="info-group">
-                    <h2>Preparation Method</h2>
-                    <p class="prep-text">@Model.GetPreperationMethod()</p>
+            <div class="method-section">
+                <h2>Preparation Method</h2>
+                <div class="method-box">
+                    <p>@Model.GetPreperationMethod()</p>
                 </div>
             </div>
         </div>
 
-        <div class="footer-section">
-            <a href="https://localhost:7222/User/ViewAllRecipes" class="back-btn">&laquo; Back to Recipes</a>
+        <div class="actions">
+            <a href="javascript:history.back()" class="back-btn">&laquo; Back to Recipes</a>
         </div>
     </div>
-</main>
+</div>
 
 <style>
-    .recipe-details-page {
+    .recipe-details-container {
         width: 100%;
-        max-width: 1000px;
-        margin: 40px auto;
+        max-width: 950px;
+        margin: 30px auto;
         padding: 0 20px;
         box-sizing: border-box;
     }
 
-        .recipe-details-page .details-card {
-            background-color: #fdf6ec;
-            border-radius: 60px;
-            padding: 50px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.02);
-        }
-
-        .recipe-details-page .recipe-header {
-            margin-bottom: 35px;
-            text-align: center;
-        }
-
-        .recipe-details-page .recipe-title {
-            font-size: 42px;
-            color: #333;
-            margin: 0;
-            font-family: 'Comfortaa', cursive;
-        }
-
-        .recipe-details-page .recipe-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-    .recipe-details-page .image-section img {
-        width: 100%;
-        max-height: 400px;
-        object-fit: cover;
-        border-radius: 35px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        display: block;
+    .details-card {
+        background-color: #fdf6ec;
+        border-radius: 40px;
+        padding: 40px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+        font-family: 'Comfortaa', cursive, sans-serif;
     }
 
-    .recipe-details-page .info-section {
-        background-color: #ffffff;
-        border-radius: 35px;
-        padding: 35px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
-        min-height: 330px;
-        box-sizing: border-box;
-    }
-
-    .recipe-details-page .info-group h2 {
-        font-size: 24px;
+    .recipe-title {
+        font-size: 34px;
         color: #2c3e50;
-        margin: 0 0 15px 0;
-        font-family: 'Comfortaa', cursive;
-        border-bottom: 2px solid #ff8c00;
-        padding-bottom: 8px;
-        display: inline-block;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 35px;
     }
 
-    .recipe-details-page .prep-text {
-        font-size: 16px;
+    .recipe-content-body {
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+    }
+
+    .image-wrapper {
+        flex: 1;
+        max-width: 40%;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+        }
+
+    .method-section {
+        flex: 1.2;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .method-section h2 {
+            font-size: 22px;
+            color: #e67e22;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+    .method-box {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 25px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    }
+
+    .method-section p {
+        font-size: 15px;
+        line-height: 1.7;
         color: #555;
-        line-height: 1.8;
         margin: 0;
-        font-family: 'Comfortaa', cursive;
         white-space: pre-line;
     }
 
-    .recipe-details-page .footer-section {
+    .actions {
         margin-top: 40px;
         text-align: center;
     }
 
-    .recipe-details-page .back-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 12px 25px;
-        border-radius: 25px;
-        background-color: #333;
-        color: #fff;
+    .back-btn {
+        display: inline-block;
+        padding: 10px 28px;
+        background-color: #ff8c00;
+        color: #ffffff;
         text-decoration: none;
+        border-radius: 20px;
         font-weight: bold;
-        font-size: 15px;
-        font-family: 'Comfortaa', cursive;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
     }
 
-        .recipe-details-page .back-btn:hover {
-            background-color: #ff8c00;
-            color: #ffffff;
+        .back-btn:hover {
+            background-color: #e07b00;
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(255, 140, 0, 0.3);
         }
+
+    .image-wrapper {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    }
 </style>
