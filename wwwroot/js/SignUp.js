@@ -1,6 +1,6 @@
 ﻿function validateSignUp(e) {
     var isValid = true;
-
+    
     function showError(inputId, errorId, message) {
         var inputGroup = document.getElementById(inputId).parentElement;
         var errorBox = document.getElementById(errorId);
